@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Song for My Wife</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(255, 71, 126, 0.3);
+            text-align: center;
+            max-width: 380px;
+            width: 85%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 5px solid #ff4d6d;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        h1 { color: #800f2f; margin: 10px 0; font-size: 1.6rem; }
+        
+        #message { 
+            color: #590d22; 
+            font-size: 1.1rem; 
+            min-height: 70px; 
+            margin: 20px 0; 
+            font-style: italic;
+        }
+
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+
+        .btn-love {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-music {
+            background: #ffb3c1;
+            color: #800f2f;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            bottom: -10%;
+            animation: rise 4s ease-in forwards;
+            opacity: 0.8;
+        }
+        @keyframes rise {
+            to { transform: translateY(-110vh) translateX(50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="us.jpg" alt="Us" class="profile-img">
+        <h1>To My Forever</h1>
+        
+        <div id="message">I made this just for you...</div>
+
+        <div class="btn-group">
+            <button class="btn-love" onclick="revealLove()">Push for a Message ❤️</button>
+            <button class="btn-music" onclick="toggleMusic()" id="musicBtn">🎵 Play Our Song</button>
+        </div>
+    </div>
+
+    <audio id="loveSong" loop>
+        <source src="SONG_URL" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const reasons = [
+            "You're the first thing I want to see every morning.",
+            "I love how you make me laugh without even trying.",
+            "Thank you for being my peace in a loud world.",
+            "You are my favorite person to do absolutely nothing with.",
+            "I'm so lucky to call you my wife.",
+            "Every love song suddenly makes sense because of you."
+        ];
+
+        function revealLove() {
+            const display = document.getElementById('message');
+            display.innerText = reasons[Math.floor(Math.random() * reasons.length)];
+            spawnHeart();
+        }
+
+        function spawnHeart() {
+            const h = document.createElement('div');
+            h.innerHTML = '❤️';
+            h.className = 'heart';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }
+
+        function toggleMusic() {
+            const song = document.getElementById('loveSong');
+            const btn = document.getElementById('musicBtn');
+            if (song.paused) {
+                song.play();
+                btn.innerText = "⏸ Pause Our Song";
+            } else {
+                song.pause();
+                btn.innerText = "🎵 Play Our Song";
+            }
+        }
+    </script>
+</body>
+</html>
