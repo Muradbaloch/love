@@ -1,140 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>A Song for My Wife</title>
+    <meta charset="UTF-8">
+    <title>For My Rani Mani Jan</title>
     <style>
+        /* General Styles */
         body {
-            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
             overflow: hidden;
+            color: #4a0e0e;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2.5rem;
-            border-radius: 40px;
-            box-shadow: 0 20px 60px rgba(255, 71, 126, 0.3);
+        /* Heart Animation Background */
+        .bg-heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            animation: move-up 6s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes move-up {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container & Page Transitions */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 380px;
             width: 85%;
+            max-width: 450px;
             position: relative;
             z-index: 10;
+            transition: all 0.8s ease;
         }
 
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 5px solid #ff4d6d;
-            object-fit: cover;
-            margin-bottom: 15px;
+        .hidden { display: none; opacity: 0; }
+
+        /* Text Animations */
+        h1 { font-size: 2.5rem; margin-bottom: 10px; animation: fadeInDown 1s ease; }
+        p { font-size: 1.2rem; line-height: 1.5; animation: fadeInUp 1.2s ease; }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 { color: #800f2f; margin: 10px 0; font-size: 1.6rem; }
-        
-        #message { 
-            color: #590d22; 
-            font-size: 1.1rem; 
-            min-height: 70px; 
-            margin: 20px 0; 
-            font-style: italic;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .btn-group { display: flex; flex-direction: column; gap: 10px; }
-
-        .btn-love {
+        /* Animated Buttons */
+        .btn {
             background: #ff4d6d;
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 25px;
-            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
         }
 
-        .btn-music {
-            background: #ffb3c1;
-            color: #800f2f;
-            border: none;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
+        .btn:hover {
+            transform: scale(1.1);
+            background: #ff758c;
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
         }
 
-        /* Floating Hearts */
-        .heart {
-            position: absolute;
-            bottom: -10%;
-            animation: rise 4s ease-in forwards;
-            opacity: 0.8;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        @keyframes rise {
-            to { transform: translateY(-110vh) translateX(50px); opacity: 0; }
-        }
+
+        .love-list { list-style: none; padding: 0; text-align: left; }
+        .love-list li { margin: 10px 0; padding-left: 30px; position: relative; }
+        .love-list li::before { content: "💖"; position: absolute; left: 0; }
+
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="us.jpeg" alt="Us" class="profile-img">
-        <h1>To My Forever</h1>
-        
-        <div id="message">I made this just for you...</div>
+    <script>
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+        }
+    </script>
 
-        <div class="btn-group">
-            <button class="btn-love" onclick="revealLove()">Push for a Message ❤️</button>
-            <button class="btn-music" onclick="toggleMusic()" id="musicBtn">🎵 Play Our Song</button>
-        </div>
+    <div id="page1" class="container">
+        <h1>Hi Rani Mani Jan! ❤️</h1>
+        <p>You make my heart beat faster every single day. I have a secret message for you...</p>
+        <button class="btn" onclick="nextPage()">Open My Heart</button>
     </div>
 
-    <audio id="loveSong" loop>
-        <source src="SONG_URL" type="audio/mpeg">
-    </audio>
+    <div id="page2" class="container hidden">
+        <h1>Why I Love You...</h1>
+        <ul class="love-list">
+            <li>Your kindness is my favorite thing.</li>
+            <li>You are the most beautiful person I've ever seen.</li>
+            <li>I am so lucky to be your husband.</li>
+            <li>Rani mani jan, I love u so much.</li>
+        </ul>
+        <button class="btn" onclick="prevPage()">Go Back</button>
+    </div>
 
     <script>
-        const reasons = [
-            "You're the first thing I want to see every morning.",
-            "Rani mani jan i love u so much.",
-            "I love how you make me laugh without even trying.",
-            "Thank you for being my peace in a loud world.",
-            "You are my favorite person to do absolutely nothing with.",
-            "I'm so lucky to call you my wife.",
-            "Every love song suddenly makes sense because of you."
-        ];
-
-        function revealLove() {
-            const display = document.getElementById('message');
-            display.innerText = reasons[Math.floor(Math.random() * reasons.length)];
-            spawnHeart();
+        function nextPage() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('page2').style.opacity = '1';
+            }, 10);
         }
 
-        function spawnHeart() {
-            const h = document.createElement('div');
-            h.innerHTML = '❤️';
-            h.className = 'heart';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 4000);
-        }
-
-        function toggleMusic() {
-            const song = document.getElementById('loveSong');
-            const btn = document.getElementById('musicBtn');
-            if (song.paused) {
-                song.play();
-                btn.innerText = "⏸ Pause Our Song";
-            } else {
-                song.pause();
-                btn.innerText = "🎵 Play Our Song";
-            }
+        function prevPage() {
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page1').classList.remove('hidden');
         }
     </script>
 </body>
