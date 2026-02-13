@@ -3,208 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Wife REHANA JANU MANI BANUK</title>
+    <title>For My Rani Mani Jan</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400&family=Playfair+Display:ital@1&display=swap');
 
         :root {
             --rose-gold: #E5C1B3;
-            --cream: #FFFDF9;
-            --lavender: #E6E6FA;
-            --deep-brown: #5D4037;
+            --soft-lavender: #F3E5F5;
+            --cream: #FFF9F5;
+            --deep-rose: #8D5B5B;
         }
 
         body {
             margin: 0;
-            background-color: var(--cream);
+            background: var(--cream);
             font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            color: var(--deep-brown);
+            color: var(--deep-rose);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Background Blobs */
-        .blobs {
+        /* Ambient Background */
+        .ambient-bg {
             position: fixed;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #fff 0%, var(--soft-lavender) 100%);
             z-index: -1;
         }
 
-        .blob {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: var(--rose-gold);
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: move 20s infinite alternate;
-        }
-
-        .lavender-blob {
-            background: var(--lavender);
-            right: -100px;
-            top: -100px;
-            animation-delay: -5s;
-        }
-
-        @keyframes move {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 100px); }
-        }
-
-        /* Glassmorphism Main Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
+        /* Glass Container */
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            padding: 3rem;
-            border-radius: 40px;
-            width: 350px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
             text-align: center;
-            box-shadow: 0 20px 50px rgba(229, 193, 179, 0.3);
-            z-index: 10;
+            min-height: 500px;
+            position: relative;
         }
 
-        .page { display: none; animation: fadeIn 0.8s ease forwards; }
+        /* Transitions */
+        .page { display: none; animation: fadeIn 1s ease; }
         .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Typography */
+        h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; }
+        .letter-text { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 1.5rem; 
+            line-height: 1.8; 
+            text-align: left;
+            background: url('https://www.transparenttextures.com/patterns/lined-paper.png');
+            padding: 20px;
+            border-left: 3px solid var(--rose-gold);
         }
 
-        /* Elements */
-        .floating-heart { font-size: 4rem; animation: float 3s ease-in-out infinite; margin-bottom: 1rem; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .counter-number { font-size: 3.5rem; color: var(--rose-gold); font-weight: 500; display: block; }
-        .stationery { font-family: 'Dancing Script', cursive; font-size: 1.3rem; line-height: 1.4; color: #8D6E63; }
-
-        /* Navigation Dock */
-        .nav-dock {
+        /* Navigation */
+        .nav-menu {
             position: fixed;
-            bottom: 30px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px 25px;
-            border-radius: 30px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            z-index: 20;
+            gap: 15px;
+            background: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
-        .nav-dock button {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
+        .nav-item {
             cursor: pointer;
+            font-size: 1.4rem;
             transition: 0.3s;
+            opacity: 0.5;
         }
 
-        .nav-dock button:hover { transform: scale(1.2); }
+        .nav-item.active { opacity: 1; transform: scale(1.3); }
 
-        /* Sparkle */
-        .sparkle {
-            position: absolute;
+        /* Photo/Memory Cards */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .memory-card {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: rotate(-2deg);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            color: var(--rose-gold);
             pointer-events: none;
-            background: var(--rose-gold);
-            border-radius: 50%;
-            animation: flare 0.8s ease-out forwards;
+            z-index: 99;
+            animation: rise 4s linear forwards;
         }
-        @keyframes flare {
-            to { transform: scale(4); opacity: 0; }
-        }
+        @keyframes rise { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
     </style>
 </head>
-<body onmousemove="createSparkle(event)">
+<body onclick="spawnHeart(event)">
 
-    <div class="blobs">
-        <div class="blob"></div>
-        <div class="blob lavender-blob"></div>
-    </div>
+    <div class="ambient-bg"></div>
 
-    <div class="glass-card">
+    <div class="container">
+        
         <div id="home" class="page active">
-            <div class="floating-heart">💖</div>
-            <h2 style="font-weight: 300; letter-spacing: 2px;">LOVE VAULT</h2>
-            <span id="day-counter" class="counter-number">0</span>
-            <p>Beautiful Days Together</p>
+            <h1 style="margin-top: 50px;">Rani Mani Jan</h1>
+            <p style="letter-spacing: 3px; font-weight: 300;">OUR DIGITAL SANCTUARY</p>
+            <div style="font-size: 5rem; margin: 30px 0;">🌸</div>
+            <p id="timer">Calculating our love...</p>
+            <p style="font-style: italic; margin-top: 40px;">"You are the best thing that ever happened to me."</p>
         </div>
 
         <div id="letter" class="page">
-            <div class="stationery">
-                <h3>My Wife Rani Mani Jan,</h3>
-                <p>Every second with you is a gift. I built this vault to keep our love safe forever.</p>
-                <p>I love you more than words can say! ❤️</p>
+            <h1>A Letter to Rehana</h1>
+            <div class="letter-text">
+                My Dearest Wife Rehana,<br><br>
+                I wanted to build something that could hold even a fraction of how much I love you. You are my peace when the world is loud, and my home no matter where we are. <br><br>
+                Thank you for your kindness, your smile, and for choosing me every single day. You are my forever and always.<br><br>
+                I love you, infinitely. Your Murad jan
             </div>
         </div>
 
-        <div id="surprise" class="page">
-            <h3>Our Memories</h3>
-            <p>✨ Always yours</p>
-            <p>🌙 My favorite person</p>
-            <p>☕ Every morning with you</p>
-            <button onclick="rain()" style="background: var(--rose-gold); border: none; padding: 10px 20px; border-radius: 20px; color: white; cursor: pointer; margin-top: 10px;">Magic Button</button>
+        <div id="promises" class="page">
+            <h1>My Promises</h1>
+            <ul style="list-style: none; padding: 0; text-align: left; line-height: 2.5;">
+                <li>✨ I promise to always listen to you.</li>
+                <li>✨ I promise to hold your hand through every storm.</li>
+                <li>✨ I promise to keep making you laugh.</li>
+                <li>✨ I promise that my heart is only yours.</li>
+            </ul>
         </div>
+
+        <div id="memories" class="page">
+            <h1>Our Moments</h1>
+            <div class="memory-grid">
+                <div class="memory-card">📸<br>Our Laughs</div>
+                <div class="memory-card" style="transform: rotate(3deg);">🥐<br>Our Dreams</div>
+                <div class="memory-card" style="transform: rotate(-3deg);">🌙<br>Our Nights</div>
+                <div class="memory-card">🏠<br>Our Future</div>
+            </div>
+        </div>
+
     </div>
 
-    <nav class="nav-dock">
-        <button onclick="showPage('home')">🏠</button>
-        <button onclick="showPage('letter')">✉️</button>
-        <button onclick="showPage('surprise')">💎</button>
-    </nav>
+    <div class="nav-menu">
+        <div class="nav-item active" onclick="showPage('home', this)">🏠</div>
+        <div class="nav-item" onclick="showPage('letter', this)">✉️</div>
+        <div class="nav-item" onclick="showPage('promises', this)">💍</div>
+        <div class="nav-item" onclick="showPage('memories', this)">🖼️</div>
+    </div>
 
     <script>
-        // 1. Calculate Days
-        const startDate = new Date("November"); // CHANGE THIS DATE TO YOUR ANNIVERSARY
-        function updateCounter() {
-            const today = new Date();
-            const diff = Math.abs(today - startDate);
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('day-counter').innerText = days;
-        }
-        updateCounter();
-
-        // 2. Page Switcher
-        function showPage(pageId) {
+        // 1. Page Navigation
+        function showPage(id, el) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+            triggerMagic();
         }
 
-        // 3. Sparkle Effect
-        function createSparkle(e) {
-            const s = document.createElement('div');
-            s.className = 'sparkle';
-            s.style.left = e.pageX + 'px';
-            s.style.top = e.pageY + 'px';
-            s.style.width = '4px';
-            s.style.height = '4px';
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 800);
+        // 2. Love Timer (Change the date below to your wedding/met date)
+        const startDate = new Date("2021-06-15");
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('timer').innerHTML = `<b>${days} Days</b> of loving you.`;
+        }
+        updateTimer();
+
+        // 3. Interactive Hearts on Click
+        function spawnHeart(e) {
+            const h = document.createElement('div');
+            h.className = 'heart';
+            h.innerHTML = '💖';
+            h.style.left = e.clientX + 'px';
+            h.style.top = e.clientY + 'px';
+            h.style.fontSize = Math.random() * 20 + 20 + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
         }
 
-        // 4. Emoji Rain
-        function rain() {
-            for(let i=0; i<30; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '💖';
-                heart.style.position = 'fixed';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '-20px';
-                heart.style.transition = 'transform 3s linear';
-                document.body.appendChild(heart);
+        // 4. Automatic Magic Rain
+        function triggerMagic() {
+            for(let i=0; i<10; i++) {
                 setTimeout(() => {
-                    heart.style.transform = 'translateY(110vh) rotate(360deg)';
-                }, 100);
-                setTimeout(() => heart.remove(), 3500);
+                    const h = document.createElement('div');
+                    h.className = 'heart';
+                    h.innerHTML = '✨';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.top = '100vh';
+                    document.body.appendChild(h);
+                    setTimeout(() => h.remove(), 4000);
+                }, i * 100);
             }
         }
     </script>
