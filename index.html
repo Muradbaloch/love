@@ -11,7 +11,7 @@
             --rose-gold: #E5C1B3;
             --valentine-red: #d63031;
             --cream: #FFFDF9;
-            --lavender-mist: #F3E5F5;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         body {
@@ -19,166 +19,161 @@
             background: var(--cream);
             font-family: 'Montserrat', sans-serif;
             color: #5d4037;
-            overflow: hidden;
+            overflow-x: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--lavender-mist) 100%);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff5f5 0%, #f3e5f5 100%);
         }
 
-        /* Floating Heart Aura Cursor */
-        #cursor-heart {
+        /* Ambient Background Elements */
+        .floating-bg {
             position: fixed;
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, rgba(229, 193, 179, 0.5) 0%, rgba(229, 193, 179, 0) 70%);
-            border-radius: 50%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
             pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
-            filter: blur(4px);
         }
 
+        /* Main Vault Card */
         .container {
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(25px);
-            padding: 50px 35px;
-            border-radius: 60px;
+            max-width: 450px;
+            width: 90%;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 40px;
             text-align: center;
-            box-shadow: 0 30px 100px rgba(229, 193, 179, 0.4);
+            box-shadow: 0 25px 80px rgba(229, 193, 179, 0.5);
             border: 1px solid white;
             position: relative;
-            z-index: 10;
+            margin: 20px 0;
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; margin: 0; color: var(--rose-gold); }
-        
-        /* Shayari Section */
-        .shayari-container {
+        /* The Anime Image */
+        .couple-img {
+            width: 100%;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid white;
+            transition: 0.5s ease;
+        }
+        .couple-img:hover { transform: scale(1.02) rotate(1deg); }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin: 10px 0; color: var(--valentine-red); }
+
+        /* Urdu Shayari */
+        .shayari {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.4rem;
-            line-height: 3;
-            color: var(--valentine-red);
-            margin: 30px 0;
+            font-size: 1.3rem;
+            line-height: 2.8;
+            color: #4a332d;
             direction: rtl;
-            text-shadow: 0 0 10px rgba(214, 48, 49, 0.1);
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
         }
 
-        .lifetime-label { 
-            font-size: 0.7rem; 
-            letter-spacing: 5px; 
-            color: #a0817c; 
-            margin-bottom: 20px; 
-            text-transform: uppercase; 
-            font-weight: 600;
-        }
-
-        /* The Interactive Button */
+        /* Interactive Button */
         .magic-btn {
             background: var(--rose-gold);
             color: white;
             border: none;
-            padding: 15px 35px;
+            padding: 15px 30px;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(229, 193, 179, 0.4);
-            outline: none;
+            font-size: 0.9rem;
+            transition: 0.3s ease;
+            box-shadow: 0 8px 15px rgba(229, 193, 179, 0.4);
+            width: 100%;
         }
+        .magic-btn:hover { background: var(--valentine-red); transform: translateY(-3px); }
 
-        .magic-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: var(--valentine-red);
-        }
-
-        /* Falling Elements */
-        .falling {
+        /* Animation Classes */
+        .falling-heart {
             position: fixed;
             top: -10%;
             pointer-events: none;
             animation: fall linear forwards;
             z-index: 100;
         }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
 
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-        }
     </style>
 </head>
 <body>
 
-    <div id="cursor-heart"></div>
+    <div class="floating-bg" id="bg"></div>
 
     <div class="container">
-        <div class="lifetime-label">Hamesha Ke Liye</div>
-        <h1>Rehana my Beautiful Wifey</h1>
+        <img src="us.png" alt="Our Love" class="couple-img">
+        
+        <p style="letter-spacing: 3px; font-size: 0.7rem; color: var(--rose-gold); font-weight: 600;">FOREVER & ALWAYS</p>
+        <h1>REHENA BI BI </h1>
 
-        <div class="shayari-container">
+        <div class="shayari">
             کئی صدیاں میں تیرے پیار پہ نثار کروں<br>
             کہ جب تلک میں جیوں تیرا انتظار کروں
         </div>
 
-        <button class="magic-btn" onclick="sendLoveEffect(this)">
+        <button class="magic-btn" onclick="triggerMagic(this)">
             Send My Love ❤️
         </button>
 
-        <p style="font-size: 0.7rem; margin-top: 30px; opacity: 0.5;">
-            Feb 14, 2026 • my love
-        </p>
+        <p id="sub-msg" style="margin-top: 15px; font-size: 0.75rem; font-style: italic; color: #8d7a7a;"></p>
     </div>
 
     <script>
-        // 1. Smooth Cursor Aura
-        const aura = document.getElementById('cursor-heart');
-        document.addEventListener('mousemove', (e) => {
-            aura.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
-        });
-
-        // 2. The Integrated Magic Script
-        function sendLoveEffect(btn) {
-            // Heart Burst Logic
-            const emojis = ['❤️', '💖', '🌸', '✨', '🤍'];
-            for(let i=0; i<35; i++) {
-                setTimeout(() => {
-                    const e = document.createElement('div');
-                    e.className = 'falling';
-                    e.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    e.style.left = Math.random() * 100 + 'vw';
-                    e.style.fontSize = Math.random() * 20 + 20 + 'px';
-                    e.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    document.body.appendChild(e);
-                    setTimeout(() => e.remove(), 5000);
-                }, i * 40);
-            }
-
-            // Text Change Logic (The Script you wanted)
-            const messages = [
-                "tao mani zindagi a jagr a band! 🌍",
-                "Rani, Mn serf tai hon shankOo. ❤️",
-                "mn tai wasta archi kani jo tao loty... ✨",
+        function triggerMagic(btn) {
+            // Change Button Text
+            const phrases = [
+                "Tao mani zindagi a jan! 🌍",
+                "Rani, I am yours forever. ❤️",
+                "i love u so much... ✨",
                 "My heart beats only for you. 💓",
-                "Meri zindagi ki khushi tum ho! 🌹",
-                "Forever & Always... 💍"
+                "tao mani saah a arwah a jagr ! 🌹"
+                "mani gulab a pul! 🌹"
+            "i miss u so much ranuk ! 🌹"
+            "ummmah i love u love u so much mani banuk ! 🌹"
+            "mani jagr a band ! 🌹"
             ];
-            
-            btn.innerText = messages[Math.floor(Math.random() * messages.length)];
+            const msg = phrases[Math.floor(Math.random() * phrases.length)];
+            document.getElementById('sub-msg').innerText = msg;
+            btn.innerText = "Sending Love... ✨";
+            setTimeout(() => { btn.innerText = "Send More Love ❤️"; }, 1000);
+
+            // Burst Hearts and Sparkles
+            const icons = ['❤️', '💖', '🌸', '✨', '🤍', '☁️'];
+            for(let i=0; i<40; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'falling-heart';
+                    heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 50);
+            }
         }
 
-        // Ambient Sparkles
-        setInterval(() => {
-            const s = document.createElement('div');
-            s.className = 'falling';
-            s.innerHTML = '✨';
-            s.style.left = Math.random() * 100 + 'vw';
-            s.style.opacity = '0.3';
-            s.style.animationDuration = '8s';
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 8000);
-        }, 3000);
+        // Mouse Sparkle trail for Desktop
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.9) {
+                const s = document.createElement('div');
+                s.className = 'falling-heart';
+                s.innerHTML = '✨';
+                s.style.left = e.clientX + 'px';
+                s.style.top = e.clientY + 'px';
+                s.style.animationDuration = '1s';
+                document.body.appendChild(s);
+                setTimeout(() => s.remove(), 1000);
+            }
+        });
     </script>
 </body>
 </html>
