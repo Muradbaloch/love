@@ -3,162 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rani's Aesthetic Vault</title>
+    <title>Rani's Eternal Vault</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Noto+Nastaliq+Urdu:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
 
+        :root {
+            --accent: #d63031;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+        }
+
         body {
             margin: 0;
-            /* Background Image Setup */
-            background: url('background.png') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            /* Background Image */
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Sticky Polaroids */
-        .sticky-photo {
-            position: fixed;
-            width: 120px;
-            background: white;
-            padding: 8px 8px 25px 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            z-index: 1;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .sticky-photo img { width: 100%; height: auto; display: block; }
-        .sticky-photo:hover { transform: scale(1.15) rotate(0deg) !important; z-index: 20; cursor: pointer; }
-
-        /* Corner Positions */
-        #pic1 { top: 5%; left: 3%; transform: rotate(-12deg); }
-        #pic2 { top: 8%; right: 3%; transform: rotate(15deg); }
-        #pic3 { bottom: 8%; left: 4%; transform: rotate(10deg); }
-        #pic4 { bottom: 5%; right: 4%; transform: rotate(-15deg); }
-
-        /* Main Glass Container */
-        .container {
+        /* Glassmorphism Card */
+        .vault-card {
             max-width: 420px;
-            width: 85%;
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 50px;
+            width: 90%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 40px;
+            padding: 40px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            z-index: 10;
-            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            animation: fadeIn 1.5s ease;
         }
 
-        .main-couple-img {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Couple Image Styling */
+        .couple-img {
             width: 100%;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 5px solid white;
         }
 
-        h1 { font-family: 'Dancing Script', cursive; color: #d63031; font-size: 2.8rem; margin: 10px 0; }
-        
-        .shayari {
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .urdu-shayari {
             font-family: 'Noto Nastaliq Urdu', serif;
             font-size: 1.3rem;
             line-height: 2.8;
-            color: #4a332d;
+            color: #2d3436;
             direction: rtl;
-            margin: 15px 0;
+            margin: 25px 0;
         }
 
-        .magic-btn {
-            background: #E5C1B3;
+        .btn-love {
+            background: linear-gradient(45deg, #d63031, #ff7675);
             color: white;
             border: none;
             padding: 16px 30px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
+            border-radius: 50px;
             font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(229, 193, 179, 0.4);
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
             transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(214, 48, 49, 0.2);
         }
-        .magic-btn:hover { background: #d63031; transform: translateY(-2px); }
+
+        .btn-love:active { transform: scale(0.96); }
 
         #quote-display {
-            margin-top: 15px;
-            font-weight: 400;
-            color: #5d4037;
+            margin-top: 20px;
+            color: #636e72;
+            font-style: italic;
             font-size: 0.9rem;
-            min-height: 20px;
+            min-height: 1.2rem;
         }
 
-        .falling { position: fixed; top: -10%; pointer-events: none; animation: fall 4s linear forwards; z-index: 100; }
+        /* Falling Hearts Effect */
+        .heart {
+            position: fixed;
+            top: -10%;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 100;
+        }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .sticky-photo { width: 70px; }
-            h1 { font-size: 2.2rem; }
-            .shayari { font-size: 1.1rem; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="sticky-photo" id="pic1"><img src="pic1.png"></div>
-    <div class="sticky-photo" id="pic2"><img src="pic2.png"></div>
-    <div class="sticky-photo" id="pic3"><img src="pic3.png"></div>
-    <div class="sticky-photo" id="pic4"><img src="pic4.png"></div>
-
-    <div class="container">
-        <img src="couple.png" class="main-couple-img" alt="Loving Couple">
+    <div class="vault-card">
+        <img src="couple.png" class="couple-img" alt="My Rani">
         
+        <p style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 4px; color: #b2bec3; margin-bottom: 5px;">Hamesha Ke Liye</p>
         <h1>Rani Mani Jan</h1>
 
-        <div class="shayari">
+        <div class="urdu-shayari">
             کئی صدیاں میں تیرے پیار پہ نثار کروں<br>
             کہ جب تلک میں جیوں تیرا انتظار کروں
         </div>
 
-        <button class="magic-btn" onclick="triggerLove(this)">Send My Love ❤️</button>
+        <button class="btn-love" onclick="sendLove()">
+            Send My Love ❤️
+        </button>
         
         <div id="quote-display"></div>
-        
-        <p style="font-size: 0.6rem; opacity: 0.5; margin-top: 20px;">FOR MY BEAUTIFUL WIFE • FEB 14, 2026</p>
     </div>
 
     <script>
-        function triggerLove(btn) {
+        function sendLove() {
             const quotes = [
                 "Tao mani zindagi a jan! 🌍",
                 "Rani, I am yours forever. ❤️",
                 "i love u so much... ✨",
-                "My heart beats only for you. 💓",
                 "tao mani saah a arwah a jagr ! 🌷",
                 "mani gulab a pul! 🌹",
-                "i miss u so much ranuk ! 🥀",
-                "ummmah i love u so much mani banuk ! 💍",
                 "mani jagr a band ! 💘"
             ];
             
-            // Random Quote Display
             document.getElementById('quote-display').innerText = quotes[Math.floor(Math.random() * quotes.length)];
             
-            // Heart/Magic Burst
-            for(let i=0; i<35; i++) {
+            for(let i=0; i<30; i++) {
                 const h = document.createElement('div');
-                h.className = 'falling';
-                h.innerHTML = ['❤️', '✨', '🌸', '🧸', '💖'][Math.floor(Math.random() * 5)];
+                h.className = 'heart';
+                h.innerHTML = ['❤️', '✨', '💖', '🌸'][Math.floor(Math.random() * 4)];
                 h.style.left = Math.random() * 100 + 'vw';
                 h.style.fontSize = Math.random() * 20 + 20 + 'px';
-                h.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                h.style.animationDuration = (Math.random() * 2 + 3) + 's';
                 document.body.appendChild(h);
-                setTimeout(() => h.remove(), 4000);
+                setTimeout(() => h.remove(), 5000);
             }
         }
     </script>
